@@ -16,10 +16,11 @@ class Avail(obj):
     
     def __init__(self, seed: str) -> None:
         Account.enable_unaudited_hdwallet_features()
+        seed = seed.strip()
         if ' ' in seed:
-            return Account.from_mnemonic(seed)
+            self.account = Account.from_mnemonic(seed)
         else:
-            return Account.from_key(seed)
+            self.account = Account.from_key(seed)
           
     def check(self):
         ts = time.time() 
