@@ -14,13 +14,21 @@ logger.add(sys.stdout, format='<g>{time:YYYY-MM-DD HH:mm:ss:SSS}</g> | <c>{level
 
 class Avail(obj):
     
-    def __init__(self, seed: str) -> None:
+    def __init__(self, seed: str, proxy='') -> None:
         Account.enable_unaudited_hdwallet_features()
         seed = seed.strip()
         if ' ' in seed:
             self.account = Account.from_mnemonic(seed)
         else:
             self.account = Account.from_key(seed)
+
+        if proxy:
+            self.proxy = {
+                'http': proxy,
+                'https': proxy,
+            }
+        else:
+            self.proxy = {}
           
     def check(self):
         ts = time.time() 
@@ -42,6 +50,6 @@ Timestamp: {ts}'''
             'type': 'ETHEREUM'
         }
     
-        res = requests.post(url=url, json=payload)
+        res = requests.post(url=url, json=payload, proxies=self.proxy)
         logger.info(self.account.address + ' ' + res.text)
        
