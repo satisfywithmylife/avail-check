@@ -1,9 +1,11 @@
-检查avail空投资格的脚本，仅限evm钱包
+# 检查avail空投资格的脚本，仅限evm钱包
 
-# pip install web3
-# pip install requests
+## 安装扩展
++ pip install web3
++ pip install requests
++ pip install loguru
 
-# 例子
+## 例子
 ```python
 from main import Avail
 
