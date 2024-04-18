@@ -8,7 +8,7 @@
 from main import Avail
 
 seed = '' # 助记词或私钥
-proxy = '' # http://127.0.0.1:1087 # 代理，非必需
+proxy = '' # 127.0.0.1:1087 # 代理，非必需
 av = Avail(seed, proxy)
 av.check()
 
